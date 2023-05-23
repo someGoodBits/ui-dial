@@ -22,8 +22,8 @@ class UIDial extends HTMLElement {
     }
 
     get valueInPercentage() {
-        if(this.bipolar === "true"){
-            let v = this.#value / (2 * this.max );
+        if (this.bipolar === "true") {
+            let v = this.#value / (2 * this.max);
             return clamp(v, -1, 1);
         } else {
             let v = (this.#value - this.min) / (this.max - this.min);
@@ -36,23 +36,23 @@ class UIDial extends HTMLElement {
     }
 
     set value(newValue) {
-        if(this.bipolar === "true"){
+        if (this.bipolar === "true") {
             newValue = clamp(newValue, -this.max, this.max);
             newValue = roundNearest(newValue, this.step);
         } else {
             newValue = clamp(newValue, this.min, this.max);
             newValue = roundNearest(newValue, this.step);
         }
-        
+
         this.#value = newValue;
         this.style.setProperty("--progress", this.valueInPercentage);
         this.dispatchEvent(this.#events.onInput);
     }
-    
+
     #updateValue(newValueInPercentage) {
-        if(this.bipolar === "true"){
+        if (this.bipolar === "true") {
             newValueInPercentage = clamp(newValueInPercentage, -1, 1);
-            this.value = newValueInPercentage * this.max * 2 ;
+            this.value = newValueInPercentage * this.max * 2;
         } else {
             newValueInPercentage = clamp(newValueInPercentage, 0, 1);
             this.value = newValueInPercentage * (this.max - this.min) + this.min;
@@ -89,7 +89,9 @@ class UIDial extends HTMLElement {
         this.min = parseFloat(this.getAttribute("min")) || 0;
         this.max = Math.max(this.getAttribute("max") || 100, this.min);
         this.value = parseFloat(this.getAttribute("value")) || 0;
-        setTimeout(()=>{this.dataset.animate = "false";},200);
+        setTimeout(() => {
+            this.dataset.animate = "false";
+        }, 200);
     }
 
     #createComponent() {
@@ -103,7 +105,9 @@ class UIDial extends HTMLElement {
     }
 
     #pointerStart(e) {
-        e.preventDefault();
+        if (e.cancelable) {
+            e.preventDefault();
+        }
         let x = e.pageX || e.touches[0]?.pageX;
         let y = e.pageY || e.touches[0]?.pageY;
         this.#anchor = this.axis === "x" ? -x : y;
