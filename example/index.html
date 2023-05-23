@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Dial</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="../src/ui-dial.js"></script>
+    <link rel="stylesheet" href="/src/ui-dial.css">
+    <script src="./main.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h2 class="title">UI Dial <span class="badge">WEB COMPONENT</span></h2>
+        <section class="dial-section">
+            <div class="dial-container">
+                <ui-dial step="1" precision="500" min="0" max="100" value="50" bipolar="true"/>
+                <div id="value">0</div>
+            </div>
+        </section>
+        <section class="code-container">
+            <div class="line">
+                <span class="code-symbol">&lt;</span><span class="code-tag">ui-dial</span>
+            </div>
+            <div class="line indent-1">
+                <span class="code-attr">min</span><span class="code-symbol">=</span><span class="code-value ">0</span>
+            </div>
+            <div class="line indent-1">
+                <span class="code-attr">max</span><span class="code-symbol">=</span><span class="code-value ">100</span>
+            </div>
+            <div class="line indent-1">
+                <span class="code-attr">value</span><span class="code-symbol">=</span><span class="code-value ">0</span>
+            </div>
+            <div class="line indent-1">
+                <span class="code-attr">step</span><span class="code-symbol">=</span><span class="code-value ">1</span>
+            </div>
+            <div class="line indent-1">
+                <span class="code-attr">onchange</span><span class="code-symbol">=</span><span class="code-value ">...</span>
+            </div>
+            <div class="line indent-1">
+                <span class="code-attr">oninput</span><span class="code-symbol">=</span><span class="code-value ">...</span>
+            </div>
+            <div class="line">
+                <span class="code-symbol">/&gt;</span>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

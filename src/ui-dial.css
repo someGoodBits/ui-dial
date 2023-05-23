@@ -1,0 +1,37 @@
+
+ui-dial .container {
+    display: block ;
+    width : var(--size,4rem);
+    height: var(--size,4rem);
+    transform: rotate(calc(90deg + var(--angle,0deg) + var(--gap,0) * 1deg / 2)) ;
+    stroke-linecap: var(--stroke-linecap,none) ;
+}
+
+ui-dial .container .track {
+    r: calc(50% - var(--track-width,8px) / 2);
+    stroke: var(--track-color,#ddd) ;
+    stroke-width: var(--track-width,8px) ;
+    fill: transparent ;
+    transform-origin: 50% 50% ;
+    stroke-dasharray: calc(100 - var(--gap) * 100 / 360) 100 ;
+}
+
+ui-dial .container .value {
+    --max : calc(100 - var(--gap,0) * 100 / 360) ;
+    r: calc(50% - var(--track-width,8px) / 2);
+    stroke: var(--value-color,hsl(220, 80%, 60%)) ;
+    stroke-width: var(--track-width,8px) ;
+    stroke-dashoffset: calc(var(--max) - var(--progress,0) * var(--max));
+    stroke-dasharray:  var(--max) 100 ;
+    fill: transparent ;
+    transform-origin: 50% 50% ;
+}
+
+ui-dial[bipolar="true"] .container .value {
+    transform: rotate(calc(180deg - var(--gap,0) * 1deg / 2));
+}
+
+ui-dial[data-animate="true"] * {
+    pointer-events: none ;
+    transition: all 100ms ease-out;
+}
