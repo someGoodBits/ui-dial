@@ -46,7 +46,6 @@ class UIDial extends HTMLElement {
 
         this.#value = newValue;
         this.style.setProperty("--progress", this.valueInPercentage);
-        this.dispatchEvent(this.#events.onInput);
     }
 
     #updateValue(newValueInPercentage) {
@@ -125,6 +124,7 @@ class UIDial extends HTMLElement {
         let delta = ((this.axis === "x" ? -x : y) - this.#anchor) / this.precision;
         delta *= this.reverse === "true" ? -1 : 1;
         this.#updateValue(this.#anchorValue - delta);
+        this.dispatchEvent(this.#events.onInput);
     }
 
     #pointerEnd() {
